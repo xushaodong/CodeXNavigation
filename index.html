@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>哈特导航 · 个性化高颜值导航页</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="topbar glass">
+      <div class="brand-wrap">
+        <div class="brand-icon">呼</div>
+        <div>
+          <h1>哈特导航</h1>
+          <p>HaTe Navigation · Personalized Starter</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="themeModeBtn" class="ghost-btn">🌗 模式</button>
+        <button id="settingsBtn" class="ghost-btn">🎨 主题</button>
+        <button id="layoutBtn" class="ghost-btn">🧩 布局</button>
+        <button id="shareBtn" class="primary-btn">🔗 分享</button>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero glass">
+        <div class="search-stack">
+          <label class="field-title">搜索</label>
+          <div class="search-row">
+            <select id="engineSelect" aria-label="选择搜索引擎">
+              <option value="google">Google</option>
+              <option value="bing">Bing</option>
+              <option value="baidu">百度</option>
+            </select>
+            <input id="searchInput" type="text" placeholder="搜索互联网或你保存的网址..." />
+            <button id="searchBtn" class="primary-btn">搜索</button>
+          </div>
+          <div id="searchHint" class="hint-text">支持站内网址检索和搜索引擎跳转</div>
+        </div>
+        <div class="hero-actions">
+          <button id="addCategoryBtn" class="ghost-btn">+ 新建分类</button>
+          <button id="addBookmarkBtn" class="ghost-btn">+ 添加网址</button>
+          <button id="loginBtn" class="ghost-btn">👤 登录 / 注册</button>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside id="categoryRail" class="category-rail glass"></aside>
+        <section id="bookmarkPanel" class="bookmark-panel"></section>
+      </section>
+    </main>
+
+    <dialog id="settingsDialog" class="glass dialog-shell">
+      <h3>个性化设置</h3>
+      <p class="muted">主题色、模式与布局一键切换，体验会自动保存。</p>
+      <div class="color-grid" id="themeColorGrid"></div>
+      <div class="dialog-actions">
+        <button class="ghost-btn" data-close="settingsDialog">关闭</button>
+      </div>
+    </dialog>
+
+    <dialog id="layoutDialog" class="glass dialog-shell">
+      <h3>选择布局方案</h3>
+      <div class="layout-list" id="layoutList"></div>
+      <div class="dialog-actions">
+        <button class="ghost-btn" data-close="layoutDialog">完成</button>
+      </div>
+    </dialog>
+
+    <dialog id="shareDialog" class="glass dialog-shell">
+      <h3>分享你的导航页</h3>
+      <label class="field-title" for="slugInput">自定义后缀</label>
+      <input id="slugInput" type="text" placeholder="例如：my-space" />
+      <textarea id="shareResult" rows="4" readonly></textarea>
+      <div class="dialog-actions">
+        <button id="generateShareBtn" class="primary-btn">生成链接</button>
+        <button id="copyShareBtn" class="ghost-btn">复制</button>
+        <button class="ghost-btn" data-close="shareDialog">关闭</button>
+      </div>
+    </dialog>
+
+    <dialog id="loginDialog" class="glass dialog-shell">
+      <h3>登录 / 注册</h3>
+      <p class="muted">已接入 Supabase Auth OTP（邮箱/手机号验证码）。</p>
+      <div class="tabs">
+        <button class="tab-btn active" data-auth="email">邮箱</button>
+        <button class="tab-btn" data-auth="phone">手机号</button>
+      </div>
+      <input id="accountInput" type="text" placeholder="请输入邮箱或手机号" />
+      <input id="codeInput" type="text" placeholder="验证码" />
+      <p id="authHint" class="hint-text">先发送验证码，再输入验证码完成登录/注册。</p>
+      <div class="dialog-actions">
+        <button id="sendCodeBtn" class="primary-btn">发送验证码</button>
+        <button id="doLoginBtn" class="ghost-btn">验证并登录</button>
+        <button class="ghost-btn" data-close="loginDialog">关闭</button>
+      </div>
+    </dialog>
+
+    <template id="categoryTemplate">
+      <div class="cat-item">
+        <button class="cat-main"></button>
+        <div class="cat-sub"></div>
+      </div>
+    </template>
+
+    <template id="bookmarkTemplate">
+      <article class="bookmark-card glass">
+        <div class="bookmark-icon"></div>
+        <div class="bookmark-meta">
+          <h4></h4>
+          <p class="bookmark-url"></p>
+          <p class="bookmark-note"></p>
+        </div>
+        <div class="bookmark-ops">
+          <button class="mini-btn" data-op="open">打开</button>
+          <button class="mini-btn" data-op="edit">编辑</button>
+          <button class="mini-btn danger" data-op="delete">删除</button>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
